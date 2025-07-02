@@ -1,5 +1,12 @@
+buildscript {
+    if (!project.hasProperty('dalet')) {
+        dependencies {
+            classpath 'nebula.netflixoss:nebula.netflixoss.gradle.plugin:9.1.0'
+        }
+    }
+}
+
 plugins {
-    id 'nebula.netflixoss' version '9.1.0' apply false
     id 'java'
     id 'pmd'
     id 'com.github.spotbugs' version "4.4.4"
@@ -50,7 +57,6 @@ if (project.hasProperty('dalet')) {
             attributes 'Branch': 'git branch --show-current'.execute().text.trim()
         }
     }
-
 } else {
     apply plugin: 'nebula.netflixoss'
 }
@@ -119,7 +125,7 @@ dependencies {
      */
     /*compile "com.sandflow:regxmllib:${revRegXMLSNAPSHOT}"*/
     testImplementation "org.mockito:mockito-core:3.3+"
-    testImplementation "org.testng:testng:7.+"
+    testImplementation "org.testng:testng:7.5.+"
     testImplementation ("com.adobe.testing:s3mock:2.1.28") {
         exclude group: "ch.qos.logback"
     }
